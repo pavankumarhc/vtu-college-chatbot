@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VTU Chatbot</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: white;
+            padding: 15px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .header-text h2 {
+            margin: 0;
+        }
+
+        .header-text p {
+            margin: 0;
+            color: gray;
+            font-size: 14px;
+        }
+
+        /* Chat Box */
+        .chat-container {
+            width: 400px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            padding: 15px;
+        }
+
+        .chat-box {
+            height: 250px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Input Area */
+        .input-area {
+            display: flex;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-area button {
+            padding: 10px;
+            margin-left: 5px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .input-area button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <img src="{{ url_for('static', filename='vtu_logo.png') }}">
+        
+        <div class="header-text">
+            <h2>Visvesvaraya Technological University, Mysore 🎓</h2>
+            <p>Student Information Chatbot 🤖</p>
+        </div>
+    </div>
+
+    <!-- Chat UI -->
+    <div class="chat-container">
+        
+        <div class="chat-box" id="chat-box">
+            <p><b>Bot:</b> Hello! Ask me about VTU 😊</p>
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Ask something...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+
+    </div>
+
+    <!-- Script -->
+    <script>
+        function sendMessage() {
+            let input = document.getElementById("user-input").value;
+            let chatBox = document.getElementById("chat-box");
+
+            if (input.trim() === "") return;
+
+            // Show user message
+            chatBox.innerHTML += "<p><b>You:</b> " + input + "</p>";
+
+            // Dummy bot response (you can connect Flask later)
+            chatBox.innerHTML += "<p><b>Bot:</b> Processing...</p>";
+
+            document.getElementById("user-input").value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+
+</body>
+</html>
